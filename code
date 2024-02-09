@@ -15,9 +15,9 @@ def telnet_and_get_mac_table(host, port, command):
     try:
         tn = telnetlib.Telnet(host, port, timeout=5)
         tn.read_until(b"login:", timeout=2).decode('ascii')
-        tn.write(b"admin\n")
+        tn.write(b"user\n")
         tn.read_until(b"Password:", timeout=2).decode('ascii')
-        tn.write(b"admin\n")
+        tn.write(b"Password\n")
         tn.write(b"show mac-address-table\n")
         tn.read_until(b"name", timeout=2).decode('ascii')
         tn.write(command)
